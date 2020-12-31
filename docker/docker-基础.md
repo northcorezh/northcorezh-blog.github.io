@@ -1,6 +1,6 @@
 
 
-[ https://www.cnblogs.com/ryxiong-blog/articles/11142585.html ]
+
 
 
 ## docker 三大基本概念
@@ -46,6 +46,29 @@ docker logs 容器id：查看容器的日志
 
 docker logs -f 容器id：检查容器内的日志
 ```
+
+
+
+### docker其他命令使用
+
+```shell
+# docker 查看配置信息
+docker info
+
+```
+
+
+
+### docker 镜像市场
+
+```
+# DaoCloud 厂商
+https://hub.daocloud.io/
+```
+
+
+
+
 
 ## 安装 docker
 
