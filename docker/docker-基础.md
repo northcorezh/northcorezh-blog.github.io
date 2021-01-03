@@ -23,9 +23,9 @@ docker rmi -f 镜像id：强制删除镜像文件
 - docker容器中必须有进程在后台运行,否则容器挂掉
 - docker镜像每次运行 都会生成新的容器id记录
 
-### docker容器的增删改查
+### docker 容器的增删改查
 
-```
+```shell
 docker run 镜像名/镜像id：运行处容器进程实例
 
 docker ps：查看正在运行的容器进程
@@ -45,17 +45,48 @@ docker exec -it 运行着的容器id /bin/bash：进入一个正在运行着的�
 docker logs 容器id：查看容器的日志
 
 docker logs -f 容器id：检查容器内的日志
+
+# 启动容器 (后台模式)
+docker run -d ubuntu:15.10 /bin/sh -c "while true; do echo hello world; sleep 1; done"
+
+# -P参数：将容器内部使用的网络端口随机映射到主机上
+docker run -P mongo
+docker ps    # 查看随机映射的端口
+
+# -p参数：设置固定映射端口
+docker -run -d -p 27017:27017 xxx_id /bin/bash
+
+# --net host参数： 可以使用通过web界面访问到容器了
+　docker run --net host xxx_id /bin/bash
+
 ```
 
 
 
-### docker其他命令使用
+### docker 其他命令使用
 
 ```shell
 # docker 查看配置信息
 docker info
 
+# 返回docker对象信息,底层信息, 返回一个 JSON 文件记录着 Docker 容器的配置和状态信息
+docker inspect xxx_id
+
 ```
+
+
+
+### docker 导入/导出
+
+```shell
+# 导出某个镜像
+docker export 1e560fca3906 > center.tar
+
+# 导入镜像
+docker import cneter.tar
+```
+
+
 
 
 
@@ -67,6 +98,13 @@ https://hub.daocloud.io/
 ```
 
 
+
+### docker 阿里云镜像加速
+
+```shell
+# 阿里云镜像加速地址
+https://dev.aliyun.com/
+```
 
 
 
@@ -84,6 +122,9 @@ cat /etc/docker/daemon.json
 {"registry-mirrors": ["http://f1361db2.m.daocloud.io"]}
 
 ```
+
+
+
 
 
 ## docker 实验    

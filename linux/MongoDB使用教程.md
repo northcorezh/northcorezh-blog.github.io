@@ -141,6 +141,77 @@
 
     
 
+### Linux 安装方式
+
+1. 安装依赖
+
+   ```shell
+   yum install -y libcurl openssl
+   ```
+
+
+
+2. 下载MongoDB源码安装或yum管理器安装
+
+   ```shell
+   # mongodb源码下载地址
+   https://www.mongodb.com/download-center#community
+   
+   # 或yum 安装
+   yum install -y mongodb
+   ```
+
+
+
+ 3. 创建数据库目录
+
+    ```shell
+    # 创建目录，并设置用户权限
+    mkdir -p /var/lib/mongo
+    mkdir -p /var/log/mongodb
+    chown `whoami` /var/lib/mongo
+    chown `whoami` /var/log/mongodb
+    ```
+
+
+
+ 4.  配置mongo服务参数
+
+    ```shell
+    mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
+    ```
+
+
+
+ 5. 后台启动
+
+    ```shell
+    
+    ```
+
+    
+
+ 6. 登录mongodb
+
+    ```
+    mongo
+    ```
+
+    
+
+	7. 创建数据库
+
+    ```shell
+    # 创建数据库 test
+    use test
+    
+    # 查看当前的数据库
+    db
+    
+    ```
+
+    
+
 
 
 ## mongo命令使用
