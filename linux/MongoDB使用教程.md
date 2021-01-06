@@ -175,42 +175,76 @@
 
 
 
- 4.  配置mongo服务参数
+ 4.  配置mongo服务参数, 允许所有ip访问
 
     ```shell
-    mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork
+    mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --bind_ip_all --fork
     ```
 
 
 
+4. 或者修改配置文件 /etc/mongod.conf
+
+   ```shell
+   # mongod.conf
+     
+   # for documentation of all options, see:
+   #   http://docs.mongodb.org/manual/reference/configuration-options/
+   
+   # Where and how to store data.
+   storage:
+     dbPath: /var/lib/mongo
+     journal:
+       enabled: true
+   #  engine:
+   #  mmapv1:
+   #  wiredTiger:
+   
+   # where to write logging data.
+   systemLog:
+     destination: file
+     logAppend: true
+     path: /var/log/mongodb/mongod.log
+   
+   # network interfaces
+   net:
+     port: 27017
+     bindIp: true
+   
+   
+   # how the process runs
+   processManagement:
+     timeZoneInfo: /usr/share/zoneinfo
+   ```
+
+   
+
  5. 后台启动
 
     ```shell
-    
+    mongod -f /etc/mongod.conf &
     ```
 
     
 
  6. 登录mongodb
 
-    ```
-    mongo
-    ```
-
-    
-
-	7. 创建数据库
-
     ```shell
+    # 登录
+    mongo
+    
     # 创建数据库 test
     use test
     
     # 查看当前的数据库
     db
-    
     ```
 
     
+
+
+
+
 
 
 
@@ -385,45 +419,295 @@ db.table1.find({"_id": {"$lte": 1}})
 db.table1.find({"_id": {"$gte":3, "$lte":4}})
 
 # id >=3 and id <=4 and age >=40
-db.user.find({
+db.table1.find({
     "_id":{"$gte":3,"$lte":4},
     "age":{"$gte":40}
 })
 或者
-db.user.find({"$and":[
-    {"_id":{"$gte":3,"$lte":4}},  #一个字典就是一个条件
+db.table1.find({"$and":[
+    {"_id":{"$gte":3,"$lte":4}},  # 一个字典就是一个条件
     {"age":{"$gte":40}}
 ]})
 
 # id >=0 and id <=1 or id >=4 or name = "changhao"
-db.table1.find({"$or":[
-{"_id": {"$let": 1, 
-]
+db.table1.find({"$or": [
+{"_id": {"$lte": 1, "$gte": 0}},
+{"_id": {"$gte": 4}},
+{"name": "changhao"}
+]})
+
+# id % 2 = 1  奇数
+db.table1.find({"_id": {"$mod": [2, 1]}})
+
+# 偶数, 取反
+db.table1.find({"_id": {"$mod": [2, 1]}})
 ```
 
 
 
+#### 正则匹配
+
+```shell
+db.table1.find({
+    "name":/^jin.*?(g|n)$/i
+})
+```
 
 
 
+#### 排序、跳过、截取
+
+```shell
+# 排序， 根据年龄排序， 1位正序， 1位倒序
+db.table1.find().sort("age": 1)
+# 选取两条数据
+db.table1.find().limit(2)
+# 跳过查询的数据的前2条
+db.table1.find().skip(2)
+db.table1.sort({"age":-1}).skip(0).limit(2)
+```
 
 
 
+#### 记录修改
+
+语法格式如下
+
+```shell
+db.collection.update(
+	<query>,
+	<update>,
+	{
+		upsert: <boolean>,
+		multi: <boolean>,
+		writeConcern: <document>
+	}
+)
+```
+
+参数说明：
+
+- query: 相当于where条件
+- update: update的对象和一些更新的操作符(如inc...等, 相当于set后面的)
+- upsert: 可选, 默认为false, 代表如果不存在update的记录不更新也不插入，设置为true代表插入。
+- multi: 可选，默认false，代表只更新找到的第一条记录，设置true, 代表更新找到的全部记录。
+- writeConcern：可选, 抛出异常的级别。
+
+实战语句
+
+```shell
+# 1.覆盖式
+db.table1.update({'age': 20}, {"name": "changhao"})
+
+# 2. 这一种简单的更新，完全替换匹配
+var obj = db.table1.findOne({"_id": 2})
+obj.username = obj.name + 'test'
+obj.age = 23
+db.table1.update({"_id": 1}, obj)
+```
 
 
 
+设置
+
+```shell
+# 设置 $set
+通常文档只会有一部分需要更新。可以使用原子性的更新修改器，指定对文档中的某些字段进行更新。
+更新修改器是种特殊的键，用来指定复杂的更新操作，比如修改、增加后者删除
+
+# set  name="changhao" where id = 2
+db.table1.update({'_id': 2}, {"$set": {"name": "changhao", "age": 23}, {"upsert":true})
+
+# 没有匹配成功则新增一条{"upsert":true}
+db.table1.update({'_id':2},{"$set":{"name":"changhao", "age":23}},{"upsert":true})
+
+# 默认只改匹配成功的第一条,{"multi":改多条}
+db.table1.update({'_id':{"$gt":4}},{"$set":{"age":28}})
+db.table1.update({'_id':{"$gt":4}},{"$set":{"age":38}},{"multi":true})
+
+# 修改内嵌文档，把名字为test的人所在的地址国家改成Japan
+db.table1.update({'name':"test"},{"$set":{"addr.country":"Japan"}})
+
+# 把名字为test的人的地2个爱好改成piao
+db.table1.update({'name':"test"},{"$set":{"hobbies.1":"piao"}})
+
+# 删除test的爱好,$unset
+db.table1.update({'name':"test"},{"$unset":{"hobbies":""}})
+```
 
 
 
+#### 增加和减少
+
+```shell
+# 增加和减少 $inc
+# 1.所有人年龄增加一岁
+db.table1.update({},
+    {
+        "$inc":{"age":1}
+    },
+    {
+        "multi":true
+    }
+)
+# 2.所有人年龄减少5岁
+db.user.update({},
+    {
+        "$inc":{"age":-5}
+    },
+    {
+        "multi":true
+    }
+)
+```
 
 
 
+#### 删除
+
+```shell
+# 删除多个中的第一个
+db.table1.deleteOne({"age":8})
+
+# 删除国家为China的全部
+db.table1.deleteMany({"addr.country": "China"})
+```
 
 
 
+## pymongo 模块
 
 
 
+### 连接数据库
+
+```python
+import pymongo
+client = pymongo.MongoClient("192.168.158.137", 27017)
+# 显示服务器上的所有数据库
+dblist = client.database_names()
+
+print(dblist)
+# 打印信息：['admin', 'config', 'local', 'test']
+
+# 连接数据库，获取库，如果库名存在，则使用，不存在创建
+db = client['test']
+```
 
 
+
+### 增加数据库内容
+
+```python
+# 增加单条
+mydict = {"name": "changhao001", "age": 23}
+res = db.table1.insert_one(mydict)
+print(res.inserted_id)				# 返回ObjectId对象
+
+# 增加多条
+mylist = [{"name": "changhao002", "age": 23}, {"name": "changhao003", "age": 23}]
+res = db.table1.insert_many(mylist)
+print(res.inserted_ids)				# 返回ObjectId对象列表
+```
+
+
+
+### 查询语句
+
+查询一条语句
+
+```python
+# 查询一条数据
+res1 = db.table1.find_one({'name': 'changhao1'})
+print(res1.items())             # 查看匹配的数据内容
+```
+
+
+
+查询集合中的所有数据或多条
+
+```python
+# 查询集合中的所有数据或多条
+res2 = db.stu.find({})          # 查询所有记录
+res3 = db.stu.find({"age": 23})
+```
+
+
+
+高级查询
+
+```python
+# 年龄大于20岁的
+myquery = {"age": {"$gt": 20}}
+res = db.table1.find(myquery)
+```
+
+
+
+正则表达式查询
+
+```python
+# 读取 name 字段中第一个字母为 "c" 的数据
+myquery = {"name": {"$regex": "^c"}}
+res = db.table1.find(myquery)
+# 遍历出匹配的数据
+for x in res: print(x)
+```
+
+
+
+查询结果排序，跳过， 截取条数
+
+```python
+# 查询结果的排序，跳过，和截取
+sort_res = list(db.table1.find().sort("age", pymongo.DESCENDING))   # 查询所有结果，并根据年龄的降序排序
+skip_res = list(db.table1.find().skip(2))                           # 查询所有结果，并过滤掉前两条
+limit_res = list(db.table1.find().limit(2))                         # 查询所有结果，并截取前两条
+
+# 分页效果
+pagination_res = list(db.table1.find().sort("age", pymongo.DESCENDING).limit(2).skip(2))
+```
+
+
+
+### 修改语句
+
+```python
+# 查询到直接更新设置值
+res = db.table1.update_one({'_id': 1}, {"$set": {"name": "changhao_update"}})
+print(res.modified_count)
+
+# 查询到记录, 在字典中增加值
+res = db.table1.find_one({"name": "changhao_update"})
+res['age'] = 20
+# 将值更新到记录中
+res = db.table1.update_one({"name": "changhao_update"}, {"$set": res})
+print(res.modified_count)
+```
+
+
+
+### 删除语句
+
+删除单条
+
+```python
+# 删除结果中的一条
+res = db.table1.delete_one({"name": "changhao_update"})
+print(res.deleted_count)
+```
+
+
+
+删除多条
+
+```python
+# 删除多条, 正则匹配的数据
+query = {"name": {"$regex": "^c"}}
+res = db.table1.delete_many(query)
+print(res.deleted_count)
+
+# 删除所有
+del_res = db.table1.delete_many({})
+```
 
