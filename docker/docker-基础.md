@@ -84,6 +84,12 @@ docker export 1e560fca3906 > center.tar
 
 # 导入镜像
 docker import cneter.tar
+
+# 导出本地镜像
+docker save -o docker-mongo.tar 213c2b6cee9f
+
+# 导入本地镜像
+docker load -i docker-mongo.tar
 ```
 
 
