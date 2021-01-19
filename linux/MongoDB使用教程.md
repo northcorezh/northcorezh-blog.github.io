@@ -197,8 +197,8 @@
     ```shell
     mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --bind_ip_all --fork
     ```
-
-
+    
+    
 
 4. 或者修改配置文件 /etc/mongod.conf
 
