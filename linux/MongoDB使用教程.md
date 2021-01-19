@@ -29,19 +29,19 @@
 
 ### windows 安装方式
 
-1. 下载安装包
+1). 下载安装包
 
 MongoDB 提供了可用于 32 位和 64 位系统的预编译二进制包，你可以从MongoDB官网下载安装，MongoDB 预编译二进制包下载地址：https://www.mongodb.com/download-center#community
 
 
 
-2. 安装
+2). 安装
 
 指定安装路径，我这里安装在D:\software\mongodb，添加D:\software\mongodb\bin到环境变量中。
 
 
 
-3. 新建目录与文件夹
+3). 新建目录与文件夹
 
 ```
 D:\software\mongodb\data\db
@@ -50,7 +50,7 @@ D:\software\mongodb\log\mongod.log
 
 
 
-4. 新建配置文件D:\software\mongodb\mongod.cfg
+4). 新建配置文件D:\software\mongodb\mongod.cfg
 
 ```
 systemLog:
@@ -70,7 +70,7 @@ setParameter:
 
 
 
-5. 制作系统服务
+5). 制作系统服务
 
 ```shell
 mongod --config "D:\software\mongodb\mongod.cfg" --bind_ip 0.0.0.0 --install
@@ -84,7 +84,7 @@ mongod --bind_ip 0.0.0.0 --port 27017 --logpath D:\software\mongodb\log\mongod.l
 
 
 
-6. 启动MongoDB服务
+6). 启动MongoDB服务
 
 ```shell
 net start MongoDB
@@ -93,7 +93,7 @@ net stop MongoDB
 
 
 
-7. 登录MongoDB
+7). 登录MongoDB
 
 ```
 mongo
@@ -104,7 +104,7 @@ mongo
 
 
 
-8. 创建有权限的用户
+8). 创建有权限的用户
 
 ```shell
 use admin
@@ -131,7 +131,7 @@ db.createUser(
 
 
 
-9. 重启数据库
+9). 重启数据库
 
 ```shell
 mongod --remove
@@ -144,7 +144,7 @@ D:\software\mongodb\data\db --serviceName "MongoDB" --serviceDisplayName "MongoD
 
 
 
-10. 重新登录
+10). 重新登录
 
 ```shell
 # 方式一
@@ -159,7 +159,7 @@ db.auth("root","123")
 
 ### Linux 安装方式
 
-1. 安装依赖
+1). 安装依赖
 
 ```shell
 yum install -y libcurl openssl
@@ -167,7 +167,7 @@ yum install -y libcurl openssl
 
 
 
-2. 下载MongoDB源码安装或yum管理器安装
+2). 下载MongoDB源码安装或yum管理器安装
 
 ```shell
 # mongodb源码下载地址
@@ -179,7 +179,7 @@ yum install -y mongodb
 
 
 
-3. 创建数据库目录
+3). 创建数据库目录
 
 ```shell
 # 创建目录，并设置用户权限
@@ -191,7 +191,7 @@ chown `whoami` /var/log/mongodb
 
 
 
-4. 配置mongo服务参数, 允许所有ip访问
+4). 配置mongo服务参数, 允许所有ip访问
 
 ```shell
 mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --bind_ip_all --fork
@@ -199,7 +199,7 @@ mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --bind_ip_a
 
 
 
-5. 或者修改配置文件 /etc/mongod.conf
+5). 或者修改配置文件 /etc/mongod.conf
 
 ```shell
 # mongod.conf
@@ -235,7 +235,7 @@ processManagement:
 
 
 
-6. 后台启动
+6). 后台启动
 
 ```shell
 mongod -f /etc/mongod.conf &
@@ -243,7 +243,7 @@ mongod -f /etc/mongod.conf &
 
 
 
-7. 登录mongodb
+7). 登录mongodb
 
 ```shell
 # 登录
