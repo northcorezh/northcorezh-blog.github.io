@@ -6,7 +6,24 @@
 
 
 
-## 安装
+> 作者 changhao
+>
+> 邮箱 <wu_chang_hao@qq.com>
+>
+> 版本 `1.0`
+
+
+
+## 知识点
+
+- Mongodb安装
+- mongo命令使用
+- mongo基础操作
+- pymongo 模块使用
+
+
+
+## Mongodb安装
 
 
 
@@ -242,15 +259,7 @@
 
     
 
-
-
-
-
-
-
 ## mongo命令使用
-
-
 
 ```shell
 # 连接到任何数据库config
@@ -275,7 +284,7 @@ db.dropDatabase()
 
 
 
-## mongo基础
+## mongo基础操作
 
 在MongoDB中相关术语的解释和sql术语对应关系
 
@@ -575,7 +584,7 @@ db.table1.deleteMany({"addr.country": "China"})
 
 
 
-## pymongo 模块
+## pymongo 模块使用
 
 
 
