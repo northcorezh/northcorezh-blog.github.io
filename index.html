@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"northcorezh.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="技术分享">
+<meta property="og:type" content="website">
+<meta property="og:title" content="帽儿山的枪手博客">
+<meta property="og:url" content="http://northcorezh.gitee.io/index.html">
+<meta property="og:site_name" content="帽儿山的枪手博客">
+<meta property="og:description" content="技术分享">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="ChangHao">
+<meta property="article:tag" content="Go Python C">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://northcorezh.gitee.io/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>帽儿山的枪手博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">帽儿山的枪手博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/12/02/%E5%89%8D%E5%90%8E%E7%AB%AF/Python%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/02/%E5%89%8D%E5%90%8E%E7%AB%AF/Python%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">Python代码规范</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-12-02 22:48:35 / 修改时间：23:25:12" itemprop="dateCreated datePublished" datetime="2021-12-02T22:48:35+08:00">2021-12-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前后端</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Python学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Google-的编程规范"><a href="#Google-的编程规范" class="headerlink" title="Google 的编程规范"></a>Google 的编程规范</h3><p>代码审核流程</p>
+<ol>
+<li>每一个语言都有专门的委员会（Style Committee）制定全公司强制的编程规范，和负责在编程风格争议时的仲裁人（Style Arbiters）。</li>
+<li>在每个语言相应的编程规范群里，每天都有大量的讨论和辩论。新达成的共识会被写出“大字报”张贴在厕所里，以至于每个人甚至来访者都能用坐着的时候那零碎的 5 分钟阅读。</li>
+<li>每一个代码提交，类似于 Git 里 diff 的概念，都需要至少两次代码评审（code review），一次针对业务逻辑，一次针对可读性（readability review）。所谓的可读性评审，着重在代码风格规范上。只有通过考核的人，才能够成为可读性评审人（readability reviewer）。</li>
+<li>有大量的开发自动化工具，确保以上的准则得到强制实施。例如，代码提交前会有 linter 做静态规则检查，不通过是无法提交代码的。</li>
+</ol>
+<h3 id="PEP-8-规范"><a href="#PEP-8-规范" class="headerlink" title="PEP 8 规范"></a>PEP 8 规范</h3><blockquote>
+<p>参考</p>
+<p>《8 号 Python 增强规范》（Python Enhacement Proposal #8），以下简称 PEP8；(<a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">https://www.python.org/dev/peps/pep-0008/</a>)</p>
+<p>《Google Python 风格规范》（Google Python Style Guide），以下简称 Google Style，这是源自 Google 内部的风格规范。公开发布的社区版本，是为了让 Google 旗下所有 Python 开源项目的编程风格统一。（<a href="http://google.github.io/styleguide/pyguide.html）" target="_blank" rel="noopener">http://google.github.io/styleguide/pyguide.html）</a></p>
+</blockquote>
+<h3 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h3><h4 id="文档规范"><a href="#文档规范" class="headerlink" title="文档规范"></a>文档规范</h4><ol>
+<li>所有import尽量放在代码文件的头部位置</li>
+<li>每行import只导入一个对象</li>
+<li>当我们使用from xxx import xxx时，import后面跟着的对象要是一个package(包对应代码目录)或者module(模块对应代码文件)，不要是一个类或者一个函数</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/02/%E5%89%8D%E5%90%8E%E7%AB%AF/Python%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/11/22/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%8601/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/22/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%8601/" class="post-title-link" itemprop="url">Python学习笔记之基础知识(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-22 22:38:27" itemprop="dateCreated datePublished" datetime="2021-11-22T22:38:27+08:00">2021-11-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-02 23:23:07" itemprop="dateModified" datetime="2021-12-02T23:23:07+08:00">2021-12-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Python学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><h3 id="生成器"><a href="#生成器" class="headerlink" title="生成器"></a>生成器</h3><h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>列表(list: [0, 1, 2])，元组 (tuple: (0, 1, 2))，字典(dict: {0:0, 1:1, 2:2})，集合 (set: set([0, 1, 2])) 都是容器，对于容器可以想象成多个元素在一起的单元，不同容器的区别，正式在于内部数据结构的实现方法。 <strong>所有容器都是可迭代的 (iterable)。</strong></p>
+<p>迭代可以想象成是你去买苹果，卖家并不告诉你他有多少库存。 这样，每次你都需要告诉卖家，你要一个苹果，然后卖家采取行为： 要么给你拿一个苹果，要么告诉你，苹果已经卖完了。你并不需要知道，卖家在仓库是怎么摆放苹果的。</p>
+<p>严谨来说， 迭代器提供了 <code>next</code> 的方法。 调用这个方法后，要么得到这个容器的下一个对象，要么得到一个 StopIteration的错误。</p>
+<p><code>next</code> 函数可以不重复不遗漏地一个一个拿到所有元素； 而可迭代对象， 通过 <code>iter()</code> 函数返回一个迭代器， 再通过 <code>next()</code> 函数就可以实现遍历。 <code>for in</code> 语句将这个过程隐式化了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/22/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%8601/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/11/21/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%8601/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/21/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%8601/" class="post-title-link" itemprop="url">Go学习笔记之基础知识(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-21 20:27:00 / 修改时间：20:28:01" itemprop="dateCreated datePublished" datetime="2021-11-21T20:27:00+08:00">2021-11-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Go学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><h4 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h4><p>在习惯上，Go语言程序员推荐使用 <strong>驼峰式</strong> 命名，当名字由几个单词组成时优先使用大小写分隔，而不是优先用下划线分隔。</p>
+<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>Go语言的关键字有25个</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">break</span>      <span class="keyword">default</span>       <span class="function"><span class="keyword">func</span>     <span class="title">interface</span>   <span class="title">select</span></span></span><br><span class="line"><span class="keyword">case</span>       <span class="keyword">defer</span>         <span class="keyword">go</span>       <span class="keyword">map</span>         <span class="keyword">struct</span></span><br><span class="line"><span class="keyword">chan</span>       <span class="keyword">else</span>          <span class="keyword">goto</span>     <span class="keyword">package</span>     <span class="keyword">switch</span></span><br><span class="line"><span class="keyword">const</span>      <span class="keyword">fallthrough</span>   <span class="keyword">if</span>       <span class="keyword">range</span>       <span class="keyword">type</span></span><br><span class="line"><span class="keyword">continue</span>   <span class="keyword">for</span>           <span class="keyword">import</span>   <span class="keyword">return</span>      <span class="keyword">var</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="预定义的名称"><a href="#预定义的名称" class="headerlink" title="预定义的名称"></a>预定义的名称</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 内建常量 </span></span><br><span class="line"><span class="literal">true</span> <span class="literal">false</span> <span class="literal">iota</span> <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 内建类型 </span></span><br><span class="line"><span class="keyword">int</span> <span class="keyword">int8</span> <span class="keyword">int16</span> <span class="keyword">int32</span> <span class="keyword">int64</span></span><br><span class="line"><span class="keyword">uint</span> <span class="keyword">uint8</span> <span class="keyword">uint16</span> <span class="keyword">uint32</span> <span class="keyword">uint64</span> <span class="keyword">uintptr</span></span><br><span class="line"><span class="keyword">float32</span> <span class="keyword">float64</span> <span class="keyword">complex128</span> <span class="keyword">complex64</span></span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">byte</span> <span class="keyword">rune</span> <span class="keyword">string</span> error</span><br><span class="line"></span><br><span class="line"><span class="comment">// 内建函数</span></span><br><span class="line"><span class="built_in">make</span> <span class="built_in">len</span> <span class="built_in">cap</span> <span class="built_in">new</span> <span class="built_in">append</span> <span class="built_in">copy</span> <span class="built_in">close</span> <span class="built_in">delete</span></span><br><span class="line"><span class="built_in">complex</span> <span class="built_in">real</span> <span class="built_in">imag</span></span><br><span class="line"><span class="built_in">panic</span> <span class="built_in">recover</span></span><br></pre></td></tr></table></figure>
+
+<p>这些内部预先定义的名字并不是关键字，你可以在定义中重新使用它们。在一些特殊的场景中重新定义它们也是有意义的，但是也要注意避免过度而引起语义混乱。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/21/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%8601/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A802/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A802/" class="post-title-link" itemprop="url">docker技术之基础使用(二)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-19 23:48:15 / 修改时间：23:50:14" itemprop="dateCreated datePublished" datetime="2021-11-19T23:48:15+08:00">2021-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><ul>
+<li>安装 docker</li>
+<li>docker 仓库<ul>
+<li>源</li>
+<li>仓库</li>
+</ul>
+</li>
+<li>docker 基础命令<ul>
+<li>docker 镜像增删改查</li>
+<li>docker 容器增删改查</li>
+<li>docker 其他命令使用</li>
+<li>docker 导入/导出</li>
+<li>docker 镜像市场</li>
+<li>docker 阿里云镜像加速</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo</span><br><span class="line">yum install -y docker</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 配置镜像下载加速器</span></span><br><span class="line">curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://f1361db2.m.daocloud.io</span><br><span class="line"></span><br><span class="line">cat /etc/docker/daemon.json</span><br><span class="line">&#123;&quot;registry-mirrors&quot;: [&quot;http://f1361db2.m.daocloud.io&quot;]&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A802/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E4%BB%8B%E7%BB%8D01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E4%BB%8B%E7%BB%8D01/" class="post-title-link" itemprop="url">docker技术之介绍(一)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-19 23:29:48 / 修改时间：23:35:55" itemprop="dateCreated datePublished" datetime="2021-11-19T23:29:48+08:00">2021-11-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Docker 是一个开源的应用容器引擎，让开发者可以打包他们的应用以及依赖包到一个可移植的容器中,然后发布到任何流行的Linux机器或Windows 机器上,也可以实现虚拟化,容器是完全使用沙箱机制,相互之间不会有任何接口。</p>
+<p>一个完整的Docker有以下几个部分组成：</p>
+<ol>
+<li>DockerClient客户端</li>
+<li>Docker Daemon守护进程</li>
+<li>Docker Image镜像</li>
+<li>DockerContainer容器</li>
+</ol>
+<ul>
+<li>docker容器中必须有进程在后台运行,否则容器挂掉</li>
+<li>docker镜像每次运行 都会生成新的容器id记录</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E4%BB%8B%E7%BB%8D01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/11/19/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%89%8D%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/19/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%89%8D%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Go前后端技术栈总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-19 00:35:00" itemprop="dateCreated datePublished" datetime="2021-11-19T00:35:00+08:00">2021-11-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-02 23:23:07" itemprop="dateModified" datetime="2021-12-02T23:23:07+08:00">2021-12-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前后端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
+<li>vue</li>
+<li>Element UI</li>
+</ul>
+<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><ul>
+<li>cobra库</li>
+<li>Gin框架<ul>
+<li>gin-jwt 模块</li>
+</ul>
+</li>
+<li>RBAC框架</li>
+<li>gorm组件</li>
+<li>MySQL 数据库</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/19/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%89%8D%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/09/28/Go%E7%9A%84%E8%AF%9E%E7%94%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/28/Go%E7%9A%84%E8%AF%9E%E7%94%9F/" class="post-title-link" itemprop="url">Go的诞生</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-28 02:23:29" itemprop="dateCreated datePublished" datetime="2021-09-28T02:23:29+08:00">2021-09-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-19 23:41:24" itemprop="dateModified" datetime="2021-11-19T23:41:24+08:00">2021-11-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Go学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>​    很久以前，有一个IT公司，这公司有个传统，允许员工拥有20%自由时间来开发实验性项目。在2007的某一天，公司的几个大牛，正在用c++开发一些比较繁琐但是核心的工作，主要包括庞大的分布式集群，大牛觉得很闹心，后来c++委员会来他们公司演讲，说c++将要添加大概35种新特性。这几个大牛的其中一个人，名为：Rob Pike，听后心中一万个xxx飘过，“c++特性还不够多吗？简化c++应该更有成就感吧”。于是乎，Rob Pike和其他几个大牛讨论了一下，怎么解决这个问题，过了一会，Rob Pike说要不我们自己搞个语言吧，名字叫“go”，非常简短，容易拼写。其他几位大牛就说好啊，然后他们找了块白板，在上面写下希望能有哪些功能。接下来的时间里，大牛们开心的讨论设计这门语言的特性，经过漫长的岁月，他们决定，以c语言为原型，以及借鉴其他语言的一些特性，来解放程序员，解放自己，然后在2009年，go语言诞生。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/09/24/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/24/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Go命令使用总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-09-24 00:44:07" itemprop="dateCreated datePublished" datetime="2021-09-24T00:44:07+08:00">2021-09-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-21 21:47:25" itemprop="dateModified" datetime="2021-11-21T21:47:25+08:00">2021-11-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Go学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 运行go源码</span></span><br><span class="line">go run xxxx.go</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 编译二进制执行文件</span></span><br><span class="line">go build xxx.go -o xxx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看go版本</span></span><br><span class="line">go version</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看环境变量</span></span><br><span class="line">go env</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内置模块文档</span></span><br><span class="line">go doc xxxxx</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查询模块是否存在</span></span><br><span class="line">go list fmt</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 模式自动模式</span></span><br><span class="line">go env -w GO111MODULE=auto</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置代理</span></span><br><span class="line">go env -w GO111MODULE=on</span><br><span class="line">go env -w GOPROXY=https://goproxy.io,direct</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改Go的工作目录</span></span><br><span class="line">go env -w GOPATH=/opt/xxx</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2020/02/28/Unit01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/28/Unit01/" class="post-title-link" itemprop="url">Linux 系统编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-28 21:53:00" itemprop="dateCreated datePublished" datetime="2020-02-28T21:53:00+08:00">2020-02-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-19 00:51:38" itemprop="dateModified" datetime="2021-11-19T00:51:38+08:00">2021-11-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux-%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Linux 编程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Linux-系统编程"><a href="#Linux-系统编程" class="headerlink" title="Linux 系统编程"></a>Linux 系统编程</h1><h2 id="文件IO"><a href="#文件IO" class="headerlink" title="文件IO"></a>文件IO</h2><h3 id="文件IO介绍"><a href="#文件IO介绍" class="headerlink" title="文件IO介绍"></a>文件IO介绍</h3><p><strong>1. Linux系统调用</strong><br>Linux系统调用(system call)是指操作系统提供给用户程序的一组“特殊接口”，用户程序可以通过这组“特殊”接口来获得操作系统提供的特殊服务。  </p>
+<p>为了更好的保护内核空间，将程序的运行空间分为内核空间和用户空间，他们运行在不同的级别上，在逻辑上是相互隔离的。在Linux中，用户程序不能直接访问内核提供的服务，必须通过系统调用来使用内核提供的服务。  </p>
+<p>Linux中的用户编程接口（API）遵循了UNIX中最流行的应用编程界面标准——POSIX。这些系统调用编程接口主要是通过C库(libc)实现的。  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/28/Unit01/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ChangHao</p>
+  <div class="site-description" itemprop="description">技术分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hltfaith" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hltfaith" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChangHao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

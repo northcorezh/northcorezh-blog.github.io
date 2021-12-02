@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"northcorezh.gitee.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="技术栈前端 vue Element UI  后端 cobra库 Gin框架 gin-jwt 模块   RBAC框架 gorm组件 MySQL 数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go前后端技术栈总结">
+<meta property="og:url" content="http://northcorezh.gitee.io/2021/11/19/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%89%8D%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="帽儿山的枪手博客">
+<meta property="og:description" content="技术栈前端 vue Element UI  后端 cobra库 Gin框架 gin-jwt 模块   RBAC框架 gorm组件 MySQL 数据库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-18T16:35:00.000Z">
+<meta property="article:modified_time" content="2021-12-02T15:23:07.141Z">
+<meta property="article:author" content="ChangHao">
+<meta property="article:tag" content="Go Python C">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://northcorezh.gitee.io/2021/11/19/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%89%8D%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E7%BB%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Go前后端技术栈总结 | 帽儿山的枪手博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">帽儿山的枪手博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://northcorezh.gitee.io/2021/11/19/Go%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Go%E5%89%8D%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ChangHao">
+      <meta itemprop="description" content="技术分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="帽儿山的枪手博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Go前后端技术栈总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-19 00:35:00" itemprop="dateCreated datePublished" datetime="2021-11-19T00:35:00+08:00">2021-11-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-02 23:23:07" itemprop="dateModified" datetime="2021-12-02T23:23:07+08:00">2021-12-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前后端</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
+<li>vue</li>
+<li>Element UI</li>
+</ul>
+<h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><ul>
+<li>cobra库</li>
+<li>Gin框架<ul>
+<li>gin-jwt 模块</li>
+</ul>
+</li>
+<li>RBAC框架</li>
+<li>gorm组件</li>
+<li>MySQL 数据库</li>
+</ul>
+<a id="more"></a>
+
+
+
+
+<h2 id="Gin框架"><a href="#Gin框架" class="headerlink" title="Gin框架"></a>Gin框架</h2><blockquote>
+<p>参考</p>
+<p>官方README  <a href="https://pkg.go.dev/github.com/gin-gonic/gin#section-readme" target="_blank" rel="noopener">https://pkg.go.dev/github.com/gin-gonic/gin#section-readme</a></p>
+</blockquote>
+<p>Gin是一个golang的微框架，封装比较优雅，API友好，源码注释比较明确，具有快速灵活，容错方便等特点</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p><strong>快速</strong>： 路由不使用反射，基于 Radix 树， 内存占用少。</p>
+<p><strong>中间件：</strong> HTTP请求，可先经过一系列中间件处理，列如：Logger，Authorization，GZIP等。这个特性和NodeJs 的Koa框架很像。 中间件机制也极大地提高了框架的可扩展性。</p>
+<p><strong>异常处理：</strong> 服务始终可用，不会宕机。Gin可以捕获 <code>panic</code> ，并恢复。而且有极为便利的机制处理HTTP请求过程中发生的错误。</p>
+<p><strong>JSON：</strong> Gin可以解析并验证请求的JSON。这个特性对 Resutful API 的开发尤其有用。</p>
+<p><strong>路由分组：</strong> 列如将需要授权和不需要授权的API分组， 不同版本的API分组。而且分组可嵌套， 且性能不受影响。</p>
+<p><strong>渲染内置：</strong>  原生支持JSON, XML和HTML的渲染。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/gin-gonic/gin</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 生成go.mod, go.sum文件</span></span><br><span class="line">go mod init</span><br><span class="line">go mod tidy</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动</span></span><br><span class="line">go run helloworld.go</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h3><h4 id="Helloword程序"><a href="#Helloword程序" class="headerlink" title="Helloword程序"></a>Helloword程序</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line"></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建路由</span></span><br><span class="line">	r := gin.Default()</span><br><span class="line">	<span class="comment">// 绑定路由规则</span></span><br><span class="line">	r.GET(<span class="string">"/"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		c.String(http.StatusOK, <span class="string">"hello World!"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="comment">// 监听端口</span></span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数 <code>router.Run()</code> 用于启动 HTTP 监听，函数接收监听地址作为参数，默认地址为 <code>:8080</code>。成功则守护执行，失败则返回错误。</p>
+<h3 id="基本处理"><a href="#基本处理" class="headerlink" title="基本处理"></a>基本处理</h3><h4 id="API参数"><a href="#API参数" class="headerlink" title="API参数"></a>API参数</h4><p>通过 <code>Context</code> 的 <code>Param</code> 方法来获取API参数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"strings"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"/user/:name/*action"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		name := c.Param(<span class="string">"name"</span>)</span><br><span class="line">		action := c.Param(<span class="string">"action"</span>)</span><br><span class="line">		action = strings.Trim(action, <span class="string">"/"</span>)</span><br><span class="line">		c.String(http.StatusOK, name + <span class="string">"/"</span> + action)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入 <code>http://127.0.0.1:8000/user/changhao/xxxx</code></p>
+<p>返回信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">changhao&#x2F;xxxx</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="URL-参数"><a href="#URL-参数" class="headerlink" title="URL 参数"></a>URL 参数</h4><p>URL 参数可以通过 <code>DefaultQuery()</code> 或 <code>Query()</code> 方法获取</p>
+<p><code>DefaultQuery()</code> 方法若参数不存在，返回默认值， <code>Query()</code> 若不存在，返回空值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"/user"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		<span class="comment">// name := c.DefaultQuery("name", "changhao") // 支持查询并设置默认值</span></span><br><span class="line">		name := c.Query(<span class="string">"name"</span>) <span class="comment">// 查询</span></span><br><span class="line">		c.String(http.StatusOK, fmt.Sprintf(<span class="string">"hello %s"</span>, name))</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入 <code>http://127.0.0.1:8000/user?name=xxx</code></p>
+<p>返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hello xxx</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="表单参数"><a href="#表单参数" class="headerlink" title="表单参数"></a>表单参数</h4><p>表单传输 <code>post</code> 请求， http常见的传输格式为四种</p>
+<ul>
+<li>application/json</li>
+<li>application/x-www-form-urlencoded</li>
+<li>application/xml</li>
+<li>multipart/form-data</li>
+</ul>
+<p>表单参数可以通过PostForm() 方法获取， 该方法默认解析的是 <code>x-www-form-urlencoded</code> 或 <code>from-data</code> 格式的参数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.POST(<span class="string">"/form"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		types := c.DefaultPostForm(<span class="string">"type"</span>, <span class="string">"post"</span>)</span><br><span class="line">		username := c.PostForm(<span class="string">"username"</span>)</span><br><span class="line">		password := c.PostForm(<span class="string">"password"</span>)</span><br><span class="line">		c.String(http.StatusOK, fmt.Sprintf(<span class="string">"username: %s, password: %s, type: %s"</span>, username, password, types))</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过Postman工具，发送POST请求</p>
+<p>返回响应</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username: changhao, password: 123456, type: post</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="获取Query和Post参数"><a href="#获取Query和Post参数" class="headerlink" title="获取Query和Post参数"></a>获取Query和Post参数</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.POST(<span class="string">"/posts"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		id := c.Query(<span class="string">"id"</span>)</span><br><span class="line">		page := c.DefaultQuery(<span class="string">"page"</span>, <span class="string">"0"</span>)</span><br><span class="line">		username := c.PostForm(<span class="string">"username"</span>)</span><br><span class="line">		password := c.DefaultPostForm(<span class="string">"password"</span>, <span class="string">"000"</span>) <span class="comment">// 可设置默认值</span></span><br><span class="line"></span><br><span class="line">		c.JSON(http.StatusOK, gin.H&#123;</span><br><span class="line">			<span class="string">"id"</span>: id,</span><br><span class="line">			<span class="string">"page"</span>: page,</span><br><span class="line">			<span class="string">"username"</span>: username,</span><br><span class="line">			<span class="string">"password"</span>: password,</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p><code>Redirect()</code> 重定向方法</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"/redirect"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.Redirect(http.StatusMovedPermanently, <span class="string">"/index"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.GET(<span class="string">"/goindex"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.Request.URL.Path = <span class="string">"/"</span></span><br><span class="line">		r.HandleContext(c)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h4><h5 id="单文件上传"><a href="#单文件上传" class="headerlink" title="单文件上传"></a>单文件上传</h5><p><code>multipart/form-data</code>格式用于文件上传</p>
+<p>gin文件上传与原生的 <code>net/http</code> 方法类似，不同在于gin把原生的request封装到c.Request中</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.POST(<span class="string">"/upload"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		file, err := c.FormFile(<span class="string">"file"</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			c.String(<span class="number">500</span>, <span class="string">"上传照片失败"</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		c.SaveUploadedFile(file, file.Filename)</span><br><span class="line">		c.String(http.StatusOK, file.Filename)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>特殊文件上传</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.POST(<span class="string">"/upload"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		_, headers, err := c.Request.FormFile(<span class="string">"file"</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Printf(<span class="string">"Error when try to get file: %v"</span>, err)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// headers.Size 获取文件大小</span></span><br><span class="line">		<span class="keyword">if</span> headers.Size &gt; <span class="number">1024</span>*<span class="number">1024</span>*<span class="number">2</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">"文件太大了"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// headers.Header.Get("Content-Type")获取上传文件类型</span></span><br><span class="line">		<span class="keyword">if</span> headers.Header.Get(<span class="string">"Content-Type"</span>) != <span class="string">"image/png"</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">"只允许上传png图"</span>)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		c.SaveUploadedFile(headers, <span class="string">"./video/"</span> + headers.Filename)</span><br><span class="line">		c.String(http.StatusOK, headers.Filename)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="多文件上传"><a href="#多文件上传" class="headerlink" title="多文件上传"></a>多文件上传</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.POST(<span class="string">"/upload"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		form, err := c.MultipartForm()</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			c.String(http.StatusBadRequest, fmt.Sprintf(<span class="string">"get err %s"</span>, err.Error()))</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 获取所有图片</span></span><br><span class="line">		files := form.File[<span class="string">"files"</span>]</span><br><span class="line">		<span class="comment">// 遍历所有图片</span></span><br><span class="line">		<span class="keyword">for</span> _, file := <span class="keyword">range</span> files &#123;</span><br><span class="line">			<span class="comment">// 逐个存</span></span><br><span class="line">			<span class="keyword">if</span> err := c.SaveUploadedFile(file, file.Filename); err != <span class="literal">nil</span> &#123;</span><br><span class="line">				c.String(http.StatusBadRequest, fmt.Sprintf(<span class="string">"upload err %s"</span>, err.Error()))</span><br><span class="line">				<span class="keyword">return</span> </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		c.String(<span class="number">200</span>, fmt.Sprintf(<span class="string">"upload ok %d files"</span>, <span class="built_in">len</span>(files)))</span><br><span class="line"></span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><h5 id="注册路由"><a href="#注册路由" class="headerlink" title="注册路由"></a>注册路由</h5><p><code>r := gin.Default()</code> 创建带有默认中间件的路由</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Default</span><span class="params">()</span> *<span class="title">Engine</span></span></span><br></pre></td></tr></table></figure>
+
+<p>默认的中间为：</p>
+<ul>
+<li>Logger，日志</li>
+<li>Recovery，恢复</li>
+</ul>
+<p>支持不同的请求方法的路由解析。通用的方法是 <code>router.Handle()</code>。</p>
+<p><code>r := gin.New()</code> 创建空白路由，不带有任何中间件。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">()</span> *<span class="title">Engine</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h5 id="路由分组"><a href="#路由分组" class="headerlink" title="路由分组"></a>路由分组</h5><p><strong>用法案例</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	v1 := r.Group(<span class="string">"/v1"</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		v1.GET(<span class="string">"/login"</span>, login)</span><br><span class="line">		v1.GET(<span class="string">"/submit"</span>, submit)</span><br><span class="line">	&#125;</span><br><span class="line">	v2 := r.Group(<span class="string">"/v2"</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		v2.POST(<span class="string">"/login"</span>, login)</span><br><span class="line">		v2.POST(<span class="string">"/submit"</span>, submit)</span><br><span class="line">	&#125;</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">login</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	name := c.DefaultQuery(<span class="string">"name"</span>, <span class="string">"xiaoming"</span>)</span><br><span class="line">	c.String(<span class="number">200</span>, fmt.Sprintf(<span class="string">"hello, %s\n"</span>, name))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">submit</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">	name := c.DefaultQuery(<span class="string">"name"</span>, <span class="string">"xiaohong"</span>)</span><br><span class="line">	c.String(<span class="number">200</span>, fmt.Sprintf(<span class="string">"hello, %s\n"</span>, name))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="优雅处理404"><a href="#优雅处理404" class="headerlink" title="优雅处理404"></a>优雅处理404</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"/user"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.String(http.StatusOK, <span class="string">"Hello Gin"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.NoRoute(<span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.String(http.StatusNotFound, <span class="string">"404 not found"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="路由原理"><a href="#路由原理" class="headerlink" title="路由原理"></a>路由原理</h4><p>Gin框架中的路由库是基于 <code>httproute</code> 实现的。</p>
+<h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><p>中间件 middleware，也是一种处理器。主要用于在多个业务逻辑中间重用代码，例如认证校验，日志处理等。</p>
+<p>中间件需要附加在路由上，使用 <code>router.Use()</code> 方法。</p>
+<h5 id="内置中间件"><a href="#内置中间件" class="headerlink" title="内置中间件"></a>内置中间件</h5><h5 id="自定义中间件"><a href="#自定义中间件" class="headerlink" title="自定义中间件"></a>自定义中间件</h5><h5 id="DEMO"><a href="#DEMO" class="headerlink" title="DEMO"></a>DEMO</h5><p><strong>案例一</strong></p>
+<p>全局中间件</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">	<span class="string">"log"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Logger</span><span class="params">()</span> <span class="title">gin</span>.<span class="title">HandlerFunc</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		t := time.Now()</span><br><span class="line">		c.Set(<span class="string">"example"</span>, <span class="string">"12345"</span>)	<span class="comment">// 设置变量</span></span><br><span class="line">		c.Next()	<span class="comment">// 在之前请求</span></span><br><span class="line">		<span class="comment">// 在之后请求</span></span><br><span class="line">		latency := time.Since(t)</span><br><span class="line">		log.Print(latency) <span class="comment">// 时间 0s</span></span><br><span class="line">		status := c.Writer.Status()</span><br><span class="line">		log.Println(status) <span class="comment">// 状态 200</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.New()</span><br><span class="line">	r.Use(Logger())</span><br><span class="line">	r.GET(<span class="string">"/test"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		example := c.MustGet(<span class="string">"example"</span>).(<span class="keyword">string</span>)</span><br><span class="line">		log.Println(example)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>案例二</strong></p>
+<p>局部中间件</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">MiddleWare</span><span class="params">()</span> <span class="title">gin</span>.<span class="title">HandleFunc</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		t := time.Now()</span><br><span class="line">		fmt.Println(<span class="string">"中间件开始"</span>)</span><br><span class="line">		c.Set(<span class="string">"key"</span>, <span class="string">"u1"</span>)</span><br><span class="line">		status := c.Writer.Status()</span><br><span class="line">		fmt.Println(<span class="string">"中间件结束"</span>, status)</span><br><span class="line">		t2 := time.Since(t)</span><br><span class="line">		fmt.Println(<span class="string">"time:"</span>, t2)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.Use(MiddleWare())</span><br><span class="line">	&#123;</span><br><span class="line">    r.GET(<span class="string">"/middleware"</span>, MiddleWare(), <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">			k, _ := c.GET(<span class="string">"key"</span>)</span><br><span class="line">			fmt.Println(<span class="string">"key:"</span>, k)</span><br><span class="line">			c.JSON(<span class="number">200</span>, gin.H&#123;<span class="string">"key"</span>: k&#125;)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="注册方法处理器"><a href="#注册方法处理器" class="headerlink" title="注册方法处理器"></a>注册方法处理器</h4><p><a href="https://studygolang.com/articles/24441" target="_blank" rel="noopener">https://studygolang.com/articles/24441</a></p>
+<h4 id="同步异步"><a href="#同步异步" class="headerlink" title="同步异步"></a>同步异步</h4><p><code>goroutine</code> 机制可以方便地实现异步处理</p>
+<p>在启动新 <code>goroutine</code> 时，不应该使用原始上下文， 必须使用它的只读副本</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  r := gin.Default()</span><br><span class="line">  <span class="comment">// 异步</span></span><br><span class="line">  r.GET(<span class="string">"/async"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">    copyContext := c.Copy() <span class="comment">// 副本</span></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">      time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">      fmt.Println(<span class="string">"异步执行"</span>, copyContext.Request.URL.Path)</span><br><span class="line">    &#125;()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 同步</span></span><br><span class="line">  r.GET(<span class="string">"sync"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">    time.Sleep(<span class="number">3</span> * time.Second)</span><br><span class="line">    fmt.Println(<span class="string">"不同执行"</span>, c.Request.URL.Path)</span><br><span class="line">  &#125;)</span><br><span class="line">  r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><h4 id="Json-数据解析"><a href="#Json-数据解析" class="headerlink" title="Json 数据解析"></a>Json 数据解析</h4><p>后端接收并解析json结构体</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Login <span class="keyword">struct</span> &#123;</span><br><span class="line">	User <span class="keyword">string</span> <span class="string">`form:"username" json:"user" uri:"user" xml:"user" binding:"required"`</span></span><br><span class="line">	Password <span class="keyword">string</span> <span class="string">`form:"password" json:"password" uri:"password" xml:"password" binding:"required"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	<span class="comment">// JSON绑定</span></span><br><span class="line">	r.POST(<span class="string">"/json"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		<span class="comment">// 声明接收的变量</span></span><br><span class="line">		<span class="keyword">var</span> json Login</span><br><span class="line">		<span class="comment">// 将request的body中的数据，自动按照json格式解析到结构体</span></span><br><span class="line">		<span class="keyword">if</span> err := c.ShouldBindJSON(&amp;json); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="comment">// 返回错误信息</span></span><br><span class="line">			<span class="comment">// gin.H封装了生成json数据的工具</span></span><br><span class="line">			c.JSON(http.StatusBadRequest, gin.H&#123;<span class="string">"error"</span>: err.Error()&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 判断用户名密码是否正确</span></span><br><span class="line">		<span class="keyword">if</span> json.User != <span class="string">"root"</span> || json.Password != <span class="string">"admin"</span> &#123;</span><br><span class="line">			c.JSON(http.StatusBadRequest, gin.H&#123;<span class="string">"status"</span>: <span class="string">"304"</span>&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		c.JSON(http.StatusOK, gin.H&#123;<span class="string">"status"</span>: <span class="string">"200"</span>&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>仅支持请求参数json格式数据</p>
+<h4 id="表单数据解析"><a href="#表单数据解析" class="headerlink" title="表单数据解析"></a>表单数据解析</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Login <span class="keyword">struct</span> &#123;</span><br><span class="line">	User <span class="keyword">string</span> <span class="string">`form:"username" json:"user" uri:"user" xml:"user" binding:"required"`</span></span><br><span class="line">	Password <span class="keyword">string</span> <span class="string">`form:"password" json:"password" uri:"password" xml:"password" binding:"required"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.POST(<span class="string">"/form"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> form Login</span><br><span class="line">		<span class="comment">// Bind() 默认解析并绑定form格式</span></span><br><span class="line">		<span class="comment">// 根据请求头中content-type自动推断</span></span><br><span class="line">		<span class="keyword">if</span> err := c.Bind(&amp;form); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			c.JSON(http.StatusBadRequest, gin.H&#123;<span class="string">"error"</span>: err.Error()&#125;)</span><br><span class="line">			<span class="keyword">return</span> </span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 判断用户名密码是否正确</span></span><br><span class="line">		<span class="keyword">if</span> form.User != <span class="string">"root"</span> || form.Password != <span class="string">"admin"</span> &#123;</span><br><span class="line">			c.JSON(http.StatusBadRequest, gin.H&#123;<span class="string">"status"</span>: <span class="string">"304"</span>&#125;)</span><br><span class="line">			<span class="keyword">return</span> </span><br><span class="line">		&#125;</span><br><span class="line">		c.JSON(http.StatusOK, gin.H&#123;<span class="string">"status"</span>: <span class="string">"200"</span>&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Url-数据解析"><a href="#Url-数据解析" class="headerlink" title="Url 数据解析"></a>Url 数据解析</h4><p>采用 <code>c.ShouldBindUri()</code> 方法处理</p>
+<h4 id="各种数据格式的处理"><a href="#各种数据格式的处理" class="headerlink" title="各种数据格式的处理"></a>各种数据格式的处理</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"/json"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.JSON(<span class="number">200</span>, gin.H&#123;<span class="string">"message"</span>: <span class="string">"json data"</span>, <span class="string">"status"</span>: <span class="number">200</span>&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.GET(<span class="string">"/struct"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		<span class="keyword">var</span> msg <span class="keyword">struct</span> &#123;</span><br><span class="line">			Name <span class="keyword">string</span></span><br><span class="line">			Message <span class="keyword">string</span></span><br><span class="line">			Number <span class="keyword">int</span></span><br><span class="line">		&#125;</span><br><span class="line">		msg.Name = <span class="string">"root"</span></span><br><span class="line">		msg.Message = <span class="string">"message"</span></span><br><span class="line">		msg.Number = <span class="number">123</span></span><br><span class="line">		c.JSON(<span class="number">200</span>, msg)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.GET(<span class="string">"/xml"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.XML(<span class="number">200</span>, gin.H&#123;<span class="string">"message"</span>: <span class="string">"xml"</span>&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.GET(<span class="string">"/yaml"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.YAML(<span class="number">200</span>, gin.H&#123;<span class="string">"message"</span>: <span class="string">"yaml"</span>&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="模板渲染"><a href="#模板渲染" class="headerlink" title="模板渲染"></a>模板渲染</h3><h3 id="会话控制"><a href="#会话控制" class="headerlink" title="会话控制"></a>会话控制</h3><h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p><strong>功能介绍</strong></p>
+<p>HTTP是无状态协议，服务器不能记录浏览器的访问状态，也就是说服务器不能区分两次请求是否由同一个客户端发出；</p>
+<p>Cookie就是解决HTTP协议无状态的方案之一，中文是小甜饼的意思；</p>
+<p>Cookie实际上就是服务器保存在浏览器上的一段信息。浏览器有了Cookie之后，每次向服务器发送请求时都会同时将该信息发送给服务器，服务器收到请求后，就可以根据该信息处理请求；</p>
+<p>Cookie由服务器创建，并发送给浏览器，最终由浏览器保存；</p>
+<p>服务端发送cookie给客户端，客户端请求时携带cookie；</p>
+<p><strong>缺点</strong></p>
+<ul>
+<li>不安全，明文</li>
+<li>增加带宽消耗</li>
+<li>可以被禁用</li>
+<li>cookie有上限</li>
+</ul>
+<h5 id="客户端请求携带cookie"><a href="#客户端请求携带cookie" class="headerlink" title="客户端请求携带cookie"></a>客户端请求携带cookie</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"cookie"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		cookie, err := c.Cookie(<span class="string">"key_cookie"</span>)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			cookie = <span class="string">"Not Data"</span></span><br><span class="line">			c.SetCookie(<span class="string">"key_cookie"</span>, <span class="string">"value_cookie"</span>, <span class="number">60</span>, <span class="string">"/"</span>, <span class="string">"localhost"</span>, <span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="string">"cookie的值是:"</span>, cookie)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="案例-cookie用户认证"><a href="#案例-cookie用户认证" class="headerlink" title="案例: cookie用户认证"></a>案例: cookie用户认证</h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"net/http"</span></span><br><span class="line">	<span class="string">"github.com/gin-gonic/gin"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">AuthMiddleWare</span><span class="params">()</span> <span class="title">gin</span>.<span class="title">HandlerFunc</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">		<span class="comment">// 获取客户端cookie</span></span><br><span class="line">		<span class="keyword">if</span> cookie, err := c.Cookie(<span class="string">"name"</span>); err != <span class="literal">nil</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> cookie == <span class="string">"changhao"</span> &#123;</span><br><span class="line">				c.Next()</span><br><span class="line">				<span class="keyword">return</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 返回错误</span></span><br><span class="line">		c.JSON(http.StatusUnauthorized, gin.H&#123;<span class="string">"message"</span>: <span class="string">"认证失败"</span>&#125;)</span><br><span class="line">		c.Abord()</span><br><span class="line">		<span class="keyword">return</span> </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	r := gin.Default()</span><br><span class="line">	r.GET(<span class="string">"/login"</span>, <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		<span class="comment">// 设置 cookie</span></span><br><span class="line">		c.SetCookie(<span class="string">"name"</span>, <span class="string">"changhao"</span>, <span class="number">60</span>, <span class="string">"/"</span>, <span class="string">"localhost"</span>, <span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">		c.String(<span class="number">200</span>, <span class="string">"Login success!"</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.GET(<span class="string">"/home"</span>, AuthMiddleWare(), <span class="function"><span class="keyword">func</span><span class="params">(c *gin.Context)</span></span>&#123;</span><br><span class="line">		c.JSON(<span class="number">200</span>, gin.H&#123;<span class="string">"data"</span>: <span class="string">"home"</span>&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">	r.Run(<span class="string">":8000"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p><strong>功能介绍</strong></p>
+<p><code>gorilla/sessions</code> 为自定义session后端提供cookie和文件系统session以及基础结构。</p>
+<ul>
+<li>简单的API：将其用作设置签名（以及可选的加密）cookie的简便方法。</li>
+<li>内置的后端可将session存储在cookie或文件系统中。</li>
+<li>Flash消息：一直持续读取的session值。</li>
+<li>切换session持久性（又称“记住我”）和设置其他属性的便捷方法。</li>
+<li>旋转身份验证和加密密钥的机制。</li>
+<li>每个请求有多个session，即使使用不同的后端也是如此。</li>
+<li>自定义session后端的接口和基础结构：可以使用通用API检索并批量保存来自不同商店的session。</li>
+</ul>
+<h3 id="进阶知识"><a href="#进阶知识" class="headerlink" title="进阶知识"></a>进阶知识</h3><ul>
+<li>路由<ul>
+<li>gin.Router</li>
+<li>gin.RouterGroup</li>
+</ul>
+</li>
+</ul>
+<h4 id="路由-1"><a href="#路由-1" class="headerlink" title="路由"></a>路由</h4><h5 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h5><p>路由系统支持任意方式的请求，如下的方法用来提供对应方法来接收请求：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">DELETE</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">GET</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">HEAD</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">OPTIONS</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">PATCH</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">POST</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(group *RouterGroup)</span> <span class="title">PUT</span><span class="params">(relativePath <span class="keyword">string</span>, handlers ...HandlerFunc)</span> <span class="title">IRoutes</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h3 id="项目目录结构设计"><a href="#项目目录结构设计" class="headerlink" title="项目目录结构设计"></a>项目目录结构设计</h3><h4 id="简易版"><a href="#简易版" class="headerlink" title="简易版"></a>简易版</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── README.md</span><br><span class="line">├── app</span><br><span class="line">│   ├── blog</span><br><span class="line">│   │   ├── handler.go</span><br><span class="line">│   │   └── router.go</span><br><span class="line">│   └── shop</span><br><span class="line">│       ├── handler.go</span><br><span class="line">│       └── router.go</span><br><span class="line">├── go.mod</span><br><span class="line">├── go.sum</span><br><span class="line">├── main.go</span><br><span class="line">└── routes</span><br><span class="line">    └── routes.go</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>/app/blog/router.go</code>  用来主要定义post相关路由信息</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Routers</span><span class="params">(e *gin.Engine)</span></span> &#123;</span><br><span class="line">  e.GET(<span class="string">"/post"</span>, postHandler)</span><br><span class="line">  e.GET(<span class="string">"/comment"</span>, commentHandler)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>/app/blog/handler.go</code>  用来定义post相关处理函数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">postHandler</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">  <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">commentHandler</span><span class="params">(c *gin.Context)</span></span> &#123;</span><br><span class="line">  <span class="comment">// TODO</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>/router/router.go</code>  根据需要定义Include函数用来注册子app中定义的路由，init函数用来进行路由初始化操作</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Option <span class="function"><span class="keyword">func</span><span class="params">(engine *gin.Engine)</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options []Option</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注册app的路由配置</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Include</span><span class="params">(opts ...Option)</span></span> &#123;</span><br><span class="line">  options = <span class="built_in">append</span>(options, opts...)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Init</span><span class="params">()</span> *<span class="title">gin</span>.<span class="title">Engine</span></span> &#123;</span><br><span class="line">  r := gin.New()</span><br><span class="line">  <span class="keyword">for</span> _, opt := <span class="keyword">range</span> options &#123;</span><br><span class="line">    opt(r)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> r</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>main.go</code>  加载多个app的路由配置</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  <span class="comment">// 加载多个app的路由配置</span></span><br><span class="line">  routers.Include(shop.Routers, blog.Routers)</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 初始化路由</span></span><br><span class="line">  r := routers.Init()</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> err := r.Run(); err != <span class="literal">nil</span> &#123;</span><br><span class="line">    fmt.Println(<span class="string">"start up service failed, err: %v \n"</span>, err)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="gorm-组件"><a href="#gorm-组件" class="headerlink" title="gorm 组件"></a>gorm 组件</h2><blockquote>
+<p>参考 <a href="https://jasperxu.com/Programming/Golang/GORM/" target="_blank" rel="noopener">gorm-中文文档(翻译)</a></p>
+<p><a href="https://www.jianshu.com/p/92ec25211d63" target="_blank" rel="noopener">Gorm 操作 mysql</a></p>
+</blockquote>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>Golang ORM库</p>
+<p><strong>知识点 &amp; 特性</strong></p>
+<ul>
+<li>模型关联 (一对一，一对多，一对多(反向)，多对多，多态关联)</li>
+<li>钩子 (Before/After Create/Save/Update/Delete/Find)</li>
+<li>预加载</li>
+<li>事务</li>
+<li>复合主键</li>
+<li>SQL 构造器</li>
+<li>自动迁移</li>
+<li>日志</li>
+<li>基于GOEM回调编写可扩展插件</li>
+<li>全特性测试覆盖</li>
+<li>开发者友好</li>
+</ul>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -u github.com/jinzhu/gorm</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="简易DEMO"><a href="#简易DEMO" class="headerlink" title="简易DEMO"></a>简易DEMO</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/jinzhu/gorm"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Product <span class="keyword">struct</span> &#123;</span><br><span class="line">  gorm.Model</span><br><span class="line">  Code <span class="keyword">string</span></span><br><span class="line">  Price <span class="keyword">uint</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  db, err := gorm.Open(<span class="string">"sqlite3"</span>, <span class="string">"test.db"</span>)</span><br><span class="line">  <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    <span class="built_in">panic</span>(<span class="string">"failed to connect database"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">defer</span> db.Close()</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 自动检查 Product 结构是否变化, 变化则进行迁移</span></span><br><span class="line">  db.AutoMigrate(&amp;Product&#123;&#125;)</span><br><span class="line">  <span class="comment">// 增</span></span><br><span class="line">  db.Create(&amp;Product&#123;Code: <span class="string">"123"</span>, Price: <span class="number">1000</span>&#125;)</span><br><span class="line">  <span class="comment">// 查</span></span><br><span class="line">  <span class="keyword">var</span> product Product</span><br><span class="line">  db.First(&amp;product, <span class="number">1</span>)	<span class="comment">// 找到id为1的产品</span></span><br><span class="line">  db.First(&amp;product, <span class="string">"code = ?"</span>, <span class="string">"123"</span>) <span class="comment">// 找到 code 为 123的产品</span></span><br><span class="line">  <span class="comment">// 改</span></span><br><span class="line">  db.Model(&amp;product).Update(<span class="string">"Price"</span>, <span class="number">2000</span>)</span><br><span class="line">  <span class="comment">// 删</span></span><br><span class="line">  db.Delete(&amp;product)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="定义model模型"><a href="#定义model模型" class="headerlink" title="定义model模型"></a>定义model模型</h3><p><strong>模型一般都是普通的Golang的结构体， Go的基本数据类型，或者指针。</strong></p>
+<p><em>示例</em></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">  gorm.Model</span><br><span class="line">  Name			<span class="keyword">string</span></span><br><span class="line">  Age				sql.NullInt64</span><br><span class="line">  Birthday	*time.Time</span><br><span class="line">  Email			<span class="keyword">string</span>	<span class="string">`gorm:"type:varchar(100);unique_index"`</span></span><br><span class="line">  Role			<span class="keyword">string</span>	<span class="string">`gorm:"size:255"`</span> <span class="comment">// 设置字段的大小255字节</span></span><br><span class="line">  MemberNumber *<span class="keyword">string</span> <span class="string">`gorm:"unique;not null"`</span> <span class="comment">// 设置 memberNumber 字段唯一且不为空</span></span><br><span class="line">  Num				<span class="keyword">int</span> 	<span class="string">`gorm:"AUTO_INCREMENT"`</span> <span class="comment">// 设置 Num 字段增量 </span></span><br><span class="line">  Address		<span class="keyword">string</span>  <span class="string">`gorm:"index:addr"`</span>		<span class="comment">// 设置Address 创建一个名字是 `addr` 的索引</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="支持的结构标签"><a href="#支持的结构标签" class="headerlink" title="支持的结构标签"></a>支持的结构标签</h4><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Column</td>
+<td>指定列的名称</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>指定列的类型</td>
+</tr>
+<tr>
+<td>Size</td>
+<td>指定列的大小，默认是255</td>
+</tr>
+<tr>
+<td>PRIMARY_KEY</td>
+<td>指定一个列作为主键</td>
+</tr>
+<tr>
+<td>UNIQUE</td>
+<td>指定唯一个列</td>
+</tr>
+<tr>
+<td>DEFAULT</td>
+<td>指定一个列的默认值</td>
+</tr>
+<tr>
+<td>PRECISION</td>
+<td>指定列的数据不为空</td>
+</tr>
+<tr>
+<td>NOT NULL</td>
+<td>指定列的数据不为空</td>
+</tr>
+<tr>
+<td>AUTO_INCREMENT</td>
+<td>指定一个列的数据是否自增</td>
+</tr>
+<tr>
+<td>INDEX</td>
+<td>创建带或不带名称的索引，同名创建复合索引</td>
+</tr>
+<tr>
+<td>UNIQUE_INDEX</td>
+<td>类似索引，创建一个唯一的索引</td>
+</tr>
+<tr>
+<td>EMBEDDED</td>
+<td>将 struct 设置为 embedded</td>
+</tr>
+<tr>
+<td>EMBEDDED_PREFIX</td>
+<td>设置嵌入式结构的前缀名称</td>
+</tr>
+<tr>
+<td>-</td>
+<td>忽略这些字段</td>
+</tr>
+</tbody></table>
+<h4 id="关联的结构标签"><a href="#关联的结构标签" class="headerlink" title="关联的结构标签"></a>关联的结构标签</h4><table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MANY2MANY</td>
+<td>指定连接表名称</td>
+</tr>
+<tr>
+<td>FOREIGNKEY</td>
+<td>指定外键</td>
+</tr>
+<tr>
+<td>ASSOCIATION_FOREIGNKEY</td>
+<td>指定关联外键</td>
+</tr>
+<tr>
+<td>POLYMORPHIC</td>
+<td>指定多态类型</td>
+</tr>
+<tr>
+<td>POLYMORPHIC_VALUE</td>
+<td>指定多态的值</td>
+</tr>
+<tr>
+<td>JOINTABLE_FOREIGNKEY</td>
+<td>指定连接表的外键</td>
+</tr>
+<tr>
+<td>ASSOCIATION_JOINTABLE_FOREIGNKEY</td>
+<td>指定连接表的关联外键</td>
+</tr>
+<tr>
+<td>SAVE_ASSOCIATIONS</td>
+<td>是否自动保存关联</td>
+</tr>
+<tr>
+<td>ASSOCIATION_AUTOUPDATE</td>
+<td>是否自动更新关联</td>
+</tr>
+<tr>
+<td>ASSOCIATION_AUTOCREATE</td>
+<td>是否自动创建关联</td>
+</tr>
+<tr>
+<td>ASSOCIATION_SAVE_REFERENCE</td>
+<td>是否引用自动保存的关联</td>
+</tr>
+<tr>
+<td>PRELOAD</td>
+<td>是否自动预加载关联</td>
+</tr>
+</tbody></table>
+<h4 id="gorm-Model"><a href="#gorm-Model" class="headerlink" title="gorm.Model"></a>gorm.Model</h4><p><code>gorm.Model</code> 是一个包含一些基本字段的结构体，包含的字段有 <code>ID</code>， <code>CreateAt</code>，<code>UpdateAt</code>，<code>DeleteAt</code>.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// gorm.Model 定义</span></span><br><span class="line"><span class="keyword">type</span> Model <span class="keyword">struct</span> &#123;</span><br><span class="line">  ID		<span class="keyword">uint</span> <span class="string">`gorm: "primary_key"`</span></span><br><span class="line">  CreatedAt time.Time</span><br><span class="line">  UpdateAt time.Time</span><br><span class="line">  DeletedAt *time.Time</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字段 `ID`，`CreatedAt`, `UpdateAt`, `DeletedAt` 注入到 `User` 模型中</span></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">  gorm.Model</span><br><span class="line">  Name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明 gorm.Model模型</span></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">  ID	<span class="keyword">int</span></span><br><span class="line">  Name <span class="keyword">string</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="ID-作为主键"><a href="#ID-作为主键" class="headerlink" title="ID 作为主键"></a><strong>ID 作为主键</strong></h5><p>GORM默认使用 <code>ID</code> 作为主键名</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span>&#123;</span><br><span class="line">  ID		<span class="keyword">string</span>	<span class="comment">// 字段名 `ID` 将被作为默认的主键名</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置字段 `AnimalID` 为默认主键</span></span><br><span class="line"><span class="keyword">type</span> Animal <span class="keyword">struct</span> &#123;</span><br><span class="line">  AnimalID <span class="keyword">int64</span> <span class="string">`gorm:"primary_key"`</span></span><br><span class="line">  Name	<span class="keyword">string</span></span><br><span class="line">  Age		<span class="keyword">int64</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="复数表名"><a href="#复数表名" class="headerlink" title="复数表名"></a><strong>复数表名</strong></h5><p>表名是结构体名称的复数形式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;&#125;	<span class="comment">// 默认的表名是 `users`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置 `User` 的表名为 `profiles`</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(User)</span> <span class="title">TableName</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"profiles"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(u User)</span> <span class="title">TableName</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">  <span class="keyword">if</span> u.Role == <span class="string">"admin"</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"admin_users"</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"users"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="指定表名"><a href="#指定表名" class="headerlink" title="指定表名"></a><strong>指定表名</strong></h5><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用 `User` 结构体创建 `delete_users` 表</span></span><br><span class="line">db.Table(<span class="string">"deleted_users"</span>).CreateTable(&amp;User&#123;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> deleted_users []User</span><br><span class="line">db.Table(<span class="string">"deleted_users"</span>).Find(&amp;deleted_users)</span><br><span class="line"></span><br><span class="line">db.Table(<span class="string">"deleted_users"</span>).Where(<span class="string">"name = ?"</span>, <span class="string">"test"</span>).Delete()</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="时间配置"><a href="#时间配置" class="headerlink" title="时间配置"></a><strong>时间配置</strong></h5><p><strong>CreatedAt</strong></p>
+<p>对于有<code>CreateAt</code> 字段的模型， 它将被设置为首次创建记录的当前时间。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">db.Create(&amp;user)	<span class="comment">// 将设置 `CreateAt` 为当前时间</span></span><br><span class="line"><span class="comment">// 可以使用 Update 方法来更改默认时间</span></span><br><span class="line">db.Model(&amp;user).Update(<span class="string">"CreatedAt"</span>, time.Now())</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>UpdateAt</strong></p>
+<p>对于有 <code>UpdateAt</code> 字段的模型，它将被设置为记录更新时的当前时间</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.Save(&amp;user)</span><br><span class="line">db.Model(&amp;user).Update(<span class="string">"name"</span>, <span class="string">"test"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>DeletedAt</strong></p>
+<p>对于有 <code>DeletedAt</code> 字段的模型， 当删除它们的实例时，他们并没有被从数据库中删除， 只是将 <code>DeletedAt</code> 字段设置为当前时间。</p>
+<h3 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h3><p>导入数据库驱动程序</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="string">"github.com/go-sql-driver/mysql"</span></span><br></pre></td></tr></table></figure>
+
+<p>GORM 已经包含了一些驱动，列如mysql驱动程序</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="string">"github.com/jinzhu/gorm/dialects/mysql"</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>连接Mysql数据库</p>
+<p>为了正确处理 <code>time.Time</code>, 需要包含 <code>parseTime</code> 作为参数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"github.com/jinzhu/gorm"</span></span><br><span class="line">  _ <span class="string">"github.com/jinzhu/gorm/dialects/mysql"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  db, err := gorm.Open(<span class="string">"mysql"</span>, <span class="string">"user:password@/dbname?charset=utf8&amp;parseTime=True&amp;loc=Local"</span>)</span><br><span class="line">  <span class="keyword">defer</span> db.Close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h3><h4 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h4><p>注意，所有包含零值的字段， 像 <code>0</code>, <code>&quot;&quot;</code>, <code>false</code> 或者其他的零值不会被保存到数据库中，但会使用这个字段的默认值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Use pointer value</span></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">  gorm.Model</span><br><span class="line">  Name <span class="keyword">string</span></span><br><span class="line">  Age *<span class="keyword">int</span> <span class="string">`gorm:"default:18"`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Use scanner/valuer</span></span><br><span class="line"><span class="keyword">type</span> User Struct &#123;</span><br><span class="line">  gorm.Model</span><br><span class="line">  Name <span class="keyword">string</span></span><br><span class="line">  Age sql.NullInt64 <span class="string">`gorm:"default:18"`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>示例</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取第一条记录， 按主键排序</span></span><br><span class="line">db.First(&amp;user)</span><br><span class="line"><span class="comment">//// SELECT * FROM users ORDER BY id LIMIT 1;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取一条记录，不指定排序</span></span><br><span class="line">db.Take(&amp;user)</span><br><span class="line"><span class="comment">//// SELECT * FROM users LIMIT 1;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有记录</span></span><br><span class="line">db.Find(&amp;user)</span><br><span class="line"><span class="comment">//// SELECT * FROM users;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过主键进行查询 (仅适用于主键是数字类型)</span></span><br><span class="line">db.First(&amp;user, <span class="number">10</span>)</span><br><span class="line"><span class="comment">//// SELECT * FROM users WHERE id = 10;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Where</strong></p>
+<p><strong>原生SQL</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取所有匹配记录</span></span><br><span class="line">db.Where(<span class="string">"name = ?"</span>, <span class="string">"changhao"</span>).Find(&amp;users)</span><br><span class="line"><span class="comment">//// select * from users where name = 'changhao';</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AND</span></span><br><span class="line">db.Where(<span class="string">"name = ? AND age &gt;= ?"</span>, <span class="string">"changhao"</span>, <span class="string">"24"</span>).Find(&amp;user)</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>Struct &amp; Map</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Struct</span></span><br><span class="line">db.Where(&amp;User&#123;Name: <span class="string">"changhao"</span>, Age: <span class="number">24</span>&#125;).First(&amp;user)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h2 id="cobra-库"><a href="#cobra-库" class="headerlink" title="cobra 库"></a>cobra 库</h2><p>Cobra既是一个用来创建强大的现代CLI命令行的golang库，也是一个生成程序应用和命令行文件的程序。</p>
+<p><a href="https://github.com/spf13/cobra" target="_blank" rel="noopener">cobra github仓库</a></p>
+<p><strong>命令(Commands)，参数(Args)和标识(Flags)是Cobra重要的三个概念。</strong></p>
+<ul>
+<li><p>命令(Commands)代表动作</p>
+</li>
+<li><p>参数(Args)代表事件</p>
+</li>
+<li><p>标示(Flags)是对动作的修饰<br> 好的命令行应该像自然语句一样流畅，让用户一眼就明白其作用。</p>
+</li>
+</ul>
+<h3 id="主要功能"><a href="#主要功能" class="headerlink" title="主要功能"></a>主要功能</h3><ul>
+<li>简易的子命令行模式，如 app server， app fetch等等</li>
+<li>完全兼容posix命令行模式</li>
+<li>嵌套子命令subcommand</li>
+<li>支持全局，局部，串联flags</li>
+<li>使用Cobra很容易的生成应用程序和命令，使用cobra create appname和cobra add cmdname</li>
+<li>如果命令输入错误，将提供智能建议，如 app srver，将提示srver没有，是否是app server</li>
+<li>自动生成commands和flags的帮助信息</li>
+<li>自动生成详细的help信息，如app help</li>
+<li>自动识别-h，–help帮助flag</li>
+<li>自动生成应用程序在bash下命令自动完成功能</li>
+<li>自动生成应用程序的man手册</li>
+<li>命令行别名</li>
+<li>自定义help和usage信息</li>
+<li>可选的紧密集成的<a href="http://github.com/spf13/viper" target="_blank" rel="noopener">viper</a> apps</li>
+</ul>
+<h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go get -v github.com/spf13/cobra/cobra</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="RBAC-框架"><a href="#RBAC-框架" class="headerlink" title="RBAC 框架"></a>RBAC 框架</h2><h3 id="选型"><a href="#选型" class="headerlink" title="选型"></a>选型</h3><ul>
+<li><a href="https://github.com/casbin/casbin" target="_blank" rel="noopener">casbin</a> 支持 ACL, RBAC, ABAC</li>
+</ul>
+<h2 id="gin-jwt-组件"><a href="#gin-jwt-组件" class="headerlink" title="gin-jwt 组件"></a>gin-jwt 组件</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/28/Go%E7%9A%84%E8%AF%9E%E7%94%9F/" rel="prev" title="Go的诞生">
+      <i class="fa fa-chevron-left"></i> Go的诞生
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/19/docker/docker%E6%8A%80%E6%9C%AF%E4%B9%8B%E4%BB%8B%E7%BB%8D01/" rel="next" title="docker技术之介绍(一)">
+      docker技术之介绍(一) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">1.</span> <span class="nav-text">技术栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF"><span class="nav-number">1.1.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF"><span class="nav-number">1.2.</span> <span class="nav-text">后端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gin%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text">Gin框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">2.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">2.3.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">快速使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Helloword%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.4.1.</span> <span class="nav-text">Helloword程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%A4%84%E7%90%86"><span class="nav-number">2.5.</span> <span class="nav-text">基本处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#API%E5%8F%82%E6%95%B0"><span class="nav-number">2.5.1.</span> <span class="nav-text">API参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL-%E5%8F%82%E6%95%B0"><span class="nav-number">2.5.2.</span> <span class="nav-text">URL 参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E5%8F%82%E6%95%B0"><span class="nav-number">2.5.3.</span> <span class="nav-text">表单参数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96Query%E5%92%8CPost%E5%8F%82%E6%95%B0"><span class="nav-number">2.5.3.1.</span> <span class="nav-text">获取Query和Post参数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91"><span class="nav-number">2.5.4.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="nav-number">2.5.5.</span> <span class="nav-text">上传文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%95%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">2.5.5.1.</span> <span class="nav-text">单文件上传</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="nav-number">2.5.5.2.</span> <span class="nav-text">多文件上传</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1"><span class="nav-number">2.5.6.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E8%B7%AF%E7%94%B1"><span class="nav-number">2.5.6.1.</span> <span class="nav-text">注册路由</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%88%86%E7%BB%84"><span class="nav-number">2.5.6.2.</span> <span class="nav-text">路由分组</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E9%9B%85%E5%A4%84%E7%90%86404"><span class="nav-number">2.5.7.</span> <span class="nav-text">优雅处理404</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86"><span class="nav-number">2.5.8.</span> <span class="nav-text">路由原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">2.5.9.</span> <span class="nav-text">中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">2.5.9.1.</span> <span class="nav-text">内置中间件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="nav-number">2.5.9.2.</span> <span class="nav-text">自定义中间件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DEMO"><span class="nav-number">2.5.9.3.</span> <span class="nav-text">DEMO</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%96%B9%E6%B3%95%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">2.5.10.</span> <span class="nav-text">注册方法处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5"><span class="nav-number">2.5.11.</span> <span class="nav-text">同步异步</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="nav-number">2.6.</span> <span class="nav-text">数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Json-%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">2.6.1.</span> <span class="nav-text">Json 数据解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">2.6.2.</span> <span class="nav-text">表单数据解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Url-%E6%95%B0%E6%8D%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">2.6.3.</span> <span class="nav-text">Url 数据解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.6.4.</span> <span class="nav-text">各种数据格式的处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E6%B8%B2%E6%9F%93"><span class="nav-number">2.7.</span> <span class="nav-text">模板渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%E6%8E%A7%E5%88%B6"><span class="nav-number">2.8.</span> <span class="nav-text">会话控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">2.8.1.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%B7%E6%B1%82%E6%90%BA%E5%B8%A6cookie"><span class="nav-number">2.8.1.1.</span> <span class="nav-text">客户端请求携带cookie</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B-cookie%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81"><span class="nav-number">2.8.1.2.</span> <span class="nav-text">案例: cookie用户认证</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session"><span class="nav-number">2.8.2.</span> <span class="nav-text">Session</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86"><span class="nav-number">2.9.</span> <span class="nav-text">进阶知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1-1"><span class="nav-number">2.9.1.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="nav-number">2.9.1.1.</span> <span class="nav-text">请求方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.10.</span> <span class="nav-text">项目目录结构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E6%98%93%E7%89%88"><span class="nav-number">2.10.1.</span> <span class="nav-text">简易版</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gorm-%E7%BB%84%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">gorm 组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">3.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E6%98%93DEMO"><span class="nav-number">3.3.</span> <span class="nav-text">简易DEMO</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89model%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.</span> <span class="nav-text">定义model模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E7%9A%84%E7%BB%93%E6%9E%84%E6%A0%87%E7%AD%BE"><span class="nav-number">3.4.1.</span> <span class="nav-text">支持的结构标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E7%BB%93%E6%9E%84%E6%A0%87%E7%AD%BE"><span class="nav-number">3.4.2.</span> <span class="nav-text">关联的结构标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gorm-Model"><span class="nav-number">3.4.3.</span> <span class="nav-text">gorm.Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ID-%E4%BD%9C%E4%B8%BA%E4%B8%BB%E9%94%AE"><span class="nav-number">3.4.3.1.</span> <span class="nav-text">ID 作为主键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%8D%E6%95%B0%E8%A1%A8%E5%90%8D"><span class="nav-number">3.4.3.2.</span> <span class="nav-text">复数表名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E5%AE%9A%E8%A1%A8%E5%90%8D"><span class="nav-number">3.4.3.3.</span> <span class="nav-text">指定表名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E9%85%8D%E7%BD%AE"><span class="nav-number">3.4.3.4.</span> <span class="nav-text">时间配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="nav-number">3.5.</span> <span class="nav-text">数据库连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5"><span class="nav-number">3.6.</span> <span class="nav-text">增删改查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA"><span class="nav-number">3.6.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.6.2.</span> <span class="nav-text">查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-number">3.6.3.</span> <span class="nav-text">更新</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">3.6.4.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94"><span class="nav-number">3.7.</span> <span class="nav-text">关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">3.8.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cobra-%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">cobra 库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD"><span class="nav-number">4.1.</span> <span class="nav-text">主要功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-2"><span class="nav-number">4.2.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RBAC-%E6%A1%86%E6%9E%B6"><span class="nav-number">5.</span> <span class="nav-text">RBAC 框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E5%9E%8B"><span class="nav-number">5.1.</span> <span class="nav-text">选型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gin-jwt-%E7%BB%84%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">gin-jwt 组件</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ChangHao</p>
+  <div class="site-description" itemprop="description">技术分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hltfaith" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hltfaith" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ChangHao</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
