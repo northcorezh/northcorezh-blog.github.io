@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://r3hs75l36.hb-bkt.clouddn.com/Vue%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA.png">
 <meta property="article:published_time" content="2021-12-15T13:59:56.000Z">
-<meta property="article:modified_time" content="2021-12-15T14:08:12.079Z">
+<meta property="article:modified_time" content="2021-12-15T14:16:14.822Z">
 <meta property="article:author" content="ChangHao">
 <meta property="article:tag" content="Html">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-12-15 21:59:56 / 修改时间：22:08:12" itemprop="dateCreated datePublished" datetime="2021-12-15T21:59:56+08:00">2021-12-15</time>
+              <time title="创建时间：2021-12-15 21:59:56 / 修改时间：22:16:14" itemprop="dateCreated datePublished" datetime="2021-12-15T21:59:56+08:00">2021-12-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -220,6 +220,10 @@
 <h4 id="浏览器安全策略"><a href="#浏览器安全策略" class="headerlink" title="浏览器安全策略"></a>浏览器安全策略</h4><p>在设置 cookie 的时候，其实你还可以设置 httpOnly 以及 secure 项，这是浏览器的安全策略。设置 httpOnly 后 cookie 将不能被 JS 读取，浏览器会自动的把它加在请求的 header 当中，设置 secure 的话，cookie 就只允许通过 HTTPS 传输。secure 选项可以过滤掉一些使用 HTTP 协议的 XSS 注入，但并不能完全阻止。</p>
 <p>httpOnly 选项使得 JS 不能读取到 cookie，那么 XSS 注入的问题也基本不用担心了。但设置 httpOnly 就带来了另一个问题，就是很容易的被 XSRF，即跨站请求伪造。当你浏览器开着这个页面的时候，另一个页面可以很容易的跨站请求这个页面的内容。因为 cookie 默认被发了出去。</p>
 <h4 id="对称加密策略"><a href="#对称加密策略" class="headerlink" title="对称加密策略"></a>对称加密策略</h4><p>另外，如果将验证信息保存在数据库中，后端每次都需要根据token查出用户id，这就增加了数据库的查询和存储开销。若把验证信息保存在session中，有加大了服务器端的存储压力。那我们可不可以不要服务器去查询呢？如果我们生成token遵循一定的规律，比如我们使用对称加密算法来加密用户id形成token，那么服务端以后其实只要解密该token就可以知道用户的id是什么了。不过呢，我只是举个例子而已，要是真这么做，只要你的对称加密算法泄露了，其他人可以通过这种加密方式进行伪造token，那么所有用户信息都不再安全了。</p>
+<span id="more"></span>
+
+
+
 <h3 id="Nodejs-介绍"><a href="#Nodejs-介绍" class="headerlink" title="Nodejs 介绍"></a>Nodejs 介绍</h3><h4 id="NPM-介绍"><a href="#NPM-介绍" class="headerlink" title="NPM 介绍"></a>NPM 介绍</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> npm 版本</span></span><br><span class="line">npm -v</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装cnpm命令如下：</span></span><br><span class="line">sudo npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装插件</span></span><br><span class="line">npm install js-md5</span><br></pre></td></tr></table></figure>
 
 
